@@ -24,7 +24,7 @@ public class UsuarioController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_USUARIO')")
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_USUARIO') and hasAuthority('SCOPE_web')")
     public ResponseEntity<Page<Usuario>> findAll(Pageable pageable){
         return ResponseEntity.ok(usuarioService.findAll(pageable));
     }

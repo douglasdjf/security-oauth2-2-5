@@ -21,29 +21,18 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest)request;
 
-
-        if(("/oauth/token").equalsIgnoreCase(req.getRequestURI())
+        if ("/oauth/token".equalsIgnoreCase(req.getRequestURI())
                 && "refresh_token".equals(req.getParameter("grant_type"))
                 && req.getCookies() != null) {
 
-            // Utilizando Stream
             String refreshToken =
                     Stream.of(req.getCookies())
                             .filter(cookie -> "refreshToken".equals(cookie.getName()))
                             .findFirst()
                             .map(cookie -> cookie.getValue())
                             .orElse(null);
-            req = new MyServletRequestWrapper(req,refreshToken);
 
-            // Utilizando For
-	       /*for(Cookie cookie : req.getCookies()) {
-				if(cookie.getName().equals("refreshToken")) {
-					String refreshToken = cookie.getValue();
-					req = new MyServletRequestWrapper(req,refreshToken);
-				}
-			}
-			*/
-
+            req = new MyServletRequestWrapper(req, refreshToken);
         }
 
         chain.doFilter(req, response);

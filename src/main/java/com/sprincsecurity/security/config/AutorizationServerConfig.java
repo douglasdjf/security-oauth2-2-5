@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -20,7 +21,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import java.util.Arrays;
 
-@Profile("oauth-security")
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableAuthorizationServer
 public class AutorizationServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -29,25 +30,39 @@ public class AutorizationServerConfig extends AuthorizationServerConfigurerAdapt
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private UserDetailsService userDetailsService;
 
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("angular")
-                .secret("$2a$10$36qp4r8M7IgJCi6DKECHT.T7ToxzX6oKVWHXGvd7RXG7TpnJNEpp6")
-                .scopes("read", "write")
-                .authorizedGrantTypes("password", "refresh_token")
-                .accessTokenValiditySeconds(1800)
-                .refreshTokenValiditySeconds(3600 * 24)
+                    .withClient("angular")
+                    .secret("$2a$10$yWka4B9YpoHMHnML7/YtJegF6KFOnFJSfb8f7Hpgpov9v63WgbPXW") // @ngul@r0
+                   // .secret(passwordEncoder.encode("@ngul@r0"))
+                   // .scopes("read", "write")
+                    .scopes("web")
+                    .authorizedGrantTypes("password", "refresh_token")
+                    .accessTokenValiditySeconds(1800)
+                    .refreshTokenValiditySeconds(3600 * 24)
                 .and()
-                .withClient("mobile")
-                .secret("$2a$10$8bxwQdeD11/pK5FBpKXXs.ZIv6Saf4ChiFp1Z0UrSR4ON6zUTm1ba")
-                .scopes("read")
-                .authorizedGrantTypes("password", "refresh_token")
-                .accessTokenValiditySeconds(1800)
-                .refreshTokenValiditySeconds(3600 * 24);
+                    .withClient("mobile")
+                   //.secret(passwordEncoder.encode("m0b1le")) // Forma insegura
+                    .secret("$2a$10$Frcb0HW/hwZithGS/A9hY.gWHOzHQFAiArWdS5CS0m57RQA4sHL6K") // Forma Segura
+                    .scopes("mobile")
+                    .authorizedGrantTypes("password", "refresh_token")
+                    .accessTokenValiditySeconds(1800)
+                    .refreshTokenValiditySeconds(3600 * 24)
+                .and()
+                    .withClient("desktop")
+                    //.secret(passwordEncoder.encode("deskt0p")) // Forma insegura
+                    .secret("$2a$10$COCR0KBPYkLB8Vvht78BJepri1acCrJCmf2i9OrQSMK89130q8aFa") // Forma Segura
+                    .scopes("desktop")
+                    .authorizedGrantTypes("password", "refresh_token")
+                    .accessTokenValiditySeconds(1800)
+                    .refreshTokenValiditySeconds(3600 * 24);
     }
 
     @Override
@@ -57,11 +72,12 @@ public class AutorizationServerConfig extends AuthorizationServerConfigurerAdapt
         tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(),accessTokenConverter()));
 
         endPoints
-                .tokenStore(tokenStore())
-                .tokenEnhancer(tokenEnhancerChain)
-                .reuseRefreshTokens(false)
                 .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
+                .userDetailsService(userDetailsService)
+                .tokenEnhancer(tokenEnhancerChain)
+                .accessTokenConverter(accessTokenConverter())
+                .tokenStore(tokenStore())
+                .reuseRefreshTokens(false);
     }
 
     @Bean
@@ -72,7 +88,7 @@ public class AutorizationServerConfig extends AuthorizationServerConfigurerAdapt
 
     public JwtAccessTokenConverter accessTokenConverter(){
         JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
-        accessTokenConverter.setSigningKey("algaworks");
+        accessTokenConverter.setSigningKey("3032885ba9cd6621bcc4e7d6b6c35c2b");
         return accessTokenConverter;
     }
 

@@ -8,6 +8,11 @@ public class GeradorSenha {
 
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        System.out.println("Desktop "+ passwordEncoder.encode("deskt0p"));
+        System.out.println("Angular "+ passwordEncoder.encode("@ngul@r0"));
+        System.out.println("Mobile "+ passwordEncoder.encode("m0b1le"));
+
         String password = "yawinpassword";
         String encodedPassword = passwordEncoder.encode(password);
         System.out.println();

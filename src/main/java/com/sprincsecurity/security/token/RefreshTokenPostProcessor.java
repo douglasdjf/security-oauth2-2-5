@@ -17,6 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@SuppressWarnings("deprecation")
 @ControllerAdvice
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken> {
 
@@ -26,7 +27,10 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
     }
 
     @Override
-    public OAuth2AccessToken beforeBodyWrite(OAuth2AccessToken body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+    public OAuth2AccessToken beforeBodyWrite(OAuth2AccessToken body, MethodParameter returnType,
+                                             MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType,
+                                             ServerHttpRequest request, ServerHttpResponse response) {
+
         HttpServletRequest req = ((ServletServerHttpRequest) request).getServletRequest();
         HttpServletResponse resp = ((ServletServerHttpResponse) response).getServletResponse();
 
@@ -38,22 +42,17 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 
         return body;
     }
-    private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletRequest req, HttpServletResponse resp) {
-        Cookie refreshTokenCookie = new Cookie("refreshToken",refreshToken);
-        refreshTokenCookie.setHttpOnly(true);
-        refreshTokenCookie.setSecure(false);
-        refreshTokenCookie.setPath(req.getContextPath()+ "/oauth/token");
-        refreshTokenCookie.setMaxAge(2592000);
-        resp.addCookie(refreshTokenCookie);
-    }
-
-    /**
-     * Remover o RefreshToken do Token
-     *
-     * @param token
-     */
 
     private void removerRefreshTokenDoBody(DefaultOAuth2AccessToken token) {
         token.setRefreshToken(null);
+    }
+
+    private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletRequest req, HttpServletResponse resp) {
+        Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
+        refreshTokenCookie.setHttpOnly(true);
+        refreshTokenCookie.setSecure(false); // TODO: Mudar para true em producao
+        refreshTokenCookie.setPath(req.getContextPath() + "/oauth/token");
+        refreshTokenCookie.setMaxAge(2592000);
+        resp.addCookie(refreshTokenCookie);
     }
 }

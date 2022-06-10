@@ -1,4 +1,4 @@
-package com.sprincsecurity.config;
+package com.sprincsecurity.security.util;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "26e7a257-6f2a-4f76-be9d-0d8ed1fc0a93",
+		"name": "Security-Oauth2-Spring",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4020582"
+	},
+	"item": [
+		{
+			"name": "Access Token Web",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "@ngul@r0",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "angular",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YW5ndWxhcjpAbmd1bEByMA=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client",
+							"value": "angular",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Access Token Mobile",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "m0b1le",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "mobile",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YW5ndWxhcjpAbmd1bEByMA=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client",
+							"value": "mobile",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Access Token Desktop",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "deskt0p",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "desktop",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YW5ndWxhcjpAbmd1bEByMA=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client",
+							"value": "desktop",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Permissao",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXJtaXNzb2VzIjpbeyJhdXRob3JpdHkiOiJST0xFX1BFU1FVSVNBUl9VU1VBUklPIn0seyJhdXRob3JpdHkiOiJST0xFX0FMVEVSQVJfVVNVQVJJTyJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9ERUxFVEVfVVNVQVJJTyJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9DUklBUl9VU1VBUklPIn1dLCJ1c2VyX25hbWUiOiJhZG1pbkBhZG1pbi5jb20iLCJkYXRhX2V4cGlyYWNhbyI6MTY1NDg3MzkxMjMxMCwic2NvcGUiOlsid2ViIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjU0ODczOTEyLCJhdXRob3JpdGllcyI6WyJST0xFX1BFU1FVSVNBUl9VU1VBUklPIiwiUk9MRV9BTFRFUkFSX1VTVUFSSU8iLCJST0xFX0RFTEVURV9VU1VBUklPIiwiUk9MRV9DUklBUl9VU1VBUklPIl0sImp0aSI6IlRwY3MwbGNRYnVBVlZrWFRqOUNRT1FYWkh2WSIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwiY2xpZW50X2lkIjoiYW5ndWxhciJ9.5sp_cKAxYPqsl_lQCaY_5FXKxl_XSIa7JtsJKFcpvpk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/permissao",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"permissao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXJtaXNzb2VzIjpbeyJhdXRob3JpdHkiOiJST0xFX1BFU1FVSVNBUl9VU1VBUklPIn0seyJhdXRob3JpdHkiOiJST0xFX0FMVEVSQVJfVVNVQVJJTyJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9ERUxFVEVfVVNVQVJJTyJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9DUklBUl9VU1VBUklPIn1dLCJ1c2VyX25hbWUiOiJhZG1pbkBhZG1pbi5jb20iLCJkYXRhX2V4cGlyYWNhbyI6MTY1NDg3MzI1MzM3Niwic2NvcGUiOlsid2ViIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjU0ODczMjUzLCJhdXRob3JpdGllcyI6WyJST0xFX1BFU1FVSVNBUl9VU1VBUklPIiwiUk9MRV9BTFRFUkFSX1VTVUFSSU8iLCJST0xFX0RFTEVURV9VU1VBUklPIiwiUk9MRV9DUklBUl9VU1VBUklPIl0sImp0aSI6IjRIN19pYVhDMHgyMzFVUVp4Zjk1WGZyYXVxYyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwiY2xpZW50X2lkIjoiYW5ndWxhciJ9.Xvd9raXRe8gKwL6NxXEvyG3jrSHaTldl-yAllrvw2pg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

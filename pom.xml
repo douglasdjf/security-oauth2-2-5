@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.10.RELEASE</version>
+		<version>2.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sprincsecurity</groupId>
 	<artifactId>security-oauth2-2-5</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>security-oauth2-2-5</name>
-	<description>Autalização OAuth2 para Spring 2.5.0</description>
+	<description>Atualização OAuth2 para Spring 2.5.0</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -86,7 +86,7 @@
 		</dependency>
 
 
-   	 <!-- Security -->
+		<!-- Segurança -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
